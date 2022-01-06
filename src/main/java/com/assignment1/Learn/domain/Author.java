@@ -1,6 +1,9 @@
 package com.assignment1.Learn.domain;
 
+
+import java.util.HashSet;
 import java.util.Set;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,20 +21,21 @@ public class Author {
       private String firstName;
       private String lastName;
 
+      
       @ManyToMany(mappedBy = "authors")
-      private Set<Book> books;
+      private Set<Book> books = new HashSet<>();
 
       public Author() {
       }
 
-      public Author(String firstName, String lastName, Set<Book> books) {
+      public Author(String firstName, String lastName) {
             this.firstName = firstName;
             this.lastName = lastName;
-            this.books = books;
+            //this.books = books;
       }
 
       public Long getId() {
-            return this.id;
+            return id;
       }
 
       public void setId(Long id) {
@@ -39,7 +43,7 @@ public class Author {
       }
 
       public String getFirstName() {
-            return this.firstName;
+            return firstName;
       }
 
       public void setFirstName(String firstName) {
@@ -47,7 +51,7 @@ public class Author {
       }
 
       public String getLastName() {
-            return this.lastName;
+            return lastName;
       }
 
       public void setLastName(String lastName) {
@@ -55,7 +59,7 @@ public class Author {
       }
 
       public Set<Book> getBooks() {
-            return this.books;
+            return books;
       }
 
       public void setBooks(Set<Book> books) {

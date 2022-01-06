@@ -10,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import net.bytebuddy.implementation.HashCodeMethod;
-
 @Entity
 public class Book {
 
@@ -19,8 +17,9 @@ public class Book {
       @GeneratedValue(strategy = GenerationType.AUTO)
       private Long id;
 
-      private String isbn;
       private String title;
+      private String isbn;
+      
 
       @ManyToMany
       @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
@@ -29,18 +28,18 @@ public class Book {
       public Book() {
       }
 
-      public Book(String isbn, String title, Set<Author> authors) {
-            this.isbn = isbn;
+      public Book(String title,String isbn) {
             this.title = title;
-            this.authors = authors;
+            this.isbn = isbn;
+            // this.authors = authors;
       }
 
       public String getIsbn() {
-            return this.isbn;
+            return isbn;
       }
 
       public Long getId() {
-            return this.id;
+            return id;
       }
 
       public void setId(Long id) {
@@ -52,7 +51,7 @@ public class Book {
       }
 
       public String getTitle() {
-            return this.title;
+            return title;
       }
 
       public void setTitle(String title) {
@@ -60,7 +59,7 @@ public class Book {
       }
 
       public Set<Author> getAuthors() {
-            return this.authors;
+            return authors;
       }
 
       public void setAuthors(Set<Author> authors) {
